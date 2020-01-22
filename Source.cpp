@@ -15,6 +15,7 @@ public:
 		LETTER,
 		OPERATOR,
 		COMMENT,
+		UNKNOW,
 	};
 	Token(Type type, char value) : myType{ type }, myValue{ value } {}
 	
@@ -45,10 +46,29 @@ vector<Token> tokenList(string myString) {
 }
 
 Token checkChar(char c) {
+	if (c == ' ' || c == '\n') {
+		Token myToken(Token::Type::WHITESPACE, c);
+		return myToken;
+	}
+
+	for (int i = 0; i <= 9; i++) {
+		if ((char)i == c) {
+			Token myToken(Token::Type::DIGIT, c);
+			return myToken;
+		}
+	}
+
 	char upperChar = 'A';
 	for (char lowerChar = 'a'; lowerChar <= 'z'; lowerChar++) {
-
+		if (c == lowerChar || c == upperChar) {
+			 Token myToken(Token::Type::LETTER, c);
+			 return myToken;
+		}
+		upperChar++;
 	}
+
+	Token myToken(Token::Type::UNKNOW, c);
+	return myToken;
 }
 int main() {
  
