@@ -36,23 +36,15 @@ private:
 	string myString;
 };
 
-vector<Token> tokenList(string myString) {
-	vector<Token> tkList;
-	for (int i = 0; i <= myString.length(); i++) {
-
-	}
-
-	return tkList;
-}
 
 Token checkChar(char c) {
-	if (c == ' ' || c == '\n') {
+	if (c == ' ' || c == 'n') {
 		Token myToken(Token::Type::WHITESPACE, c);
 		return myToken;
 	}
 
-	for (int i = 0; i <= 9; i++) {
-		if ((char)i == c) {
+	for (int i = 48; i <= 57; i++) {
+		if (i == c) {
 			Token myToken(Token::Type::DIGIT, c);
 			return myToken;
 		}
@@ -61,8 +53,8 @@ Token checkChar(char c) {
 	char upperChar = 'A';
 	for (char lowerChar = 'a'; lowerChar <= 'z'; lowerChar++) {
 		if (c == lowerChar || c == upperChar) {
-			 Token myToken(Token::Type::LETTER, c);
-			 return myToken;
+			Token myToken(Token::Type::LETTER, c);
+			return myToken;
 		}
 		upperChar++;
 	}
@@ -70,6 +62,35 @@ Token checkChar(char c) {
 	Token myToken(Token::Type::UNKNOW, c);
 	return myToken;
 }
+
+vector<Token> tokenList(string myString) {
+	vector<Token> tkList;
+	for (int i = 0; i <= myString.length(); i++) {
+		tkList.push_back(checkChar(myString[i]));
+	}
+
+	return tkList;
+}
+
+string enumToString(Token::Type myType) {
+	switch (myType) {
+		case Token::Type::UNKNOW:
+			return "UNKNOW";
+		case Token::Type::WHITESPACE:
+			return "WHITESPACE";
+		case Token::Type::DIGIT:
+			return "DIGIT";
+		case Token::Type::LETTER:
+			return "LETTER";
+		}
+	return "NOTHING";
+}
+
 int main() {
- 
+	vector<Token> tkList;
+	string code = "int a = 0; ?? hey 1234 boom \n \n \n \n";
+	tkList = tokenList(code);
+	for (int i = 0; i < tkList.size(); i++){
+		std::cout << enumToString(tkList[i].getType()) << " : " << tkList[i].getValue() << "\n";
+	}
 }
