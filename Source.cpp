@@ -107,9 +107,17 @@ Token formNumber(string myString, int &pos) {
 		nextPos++;
 		pos++;
 	}
-	string myTokenString(myTokenVec.begin(), myTokenVec.end());
-	Token myTokenObj(Token::Type::NUMBER, myTokenString);
-	return myTokenObj;
+
+	if (myTokenVec.size() > 1) {
+		string myTokenString(myTokenVec.begin(), myTokenVec.end());
+		Token myTokenObj(Token::Type::NUMBER, myTokenString);
+		return myTokenObj;
+	}
+	else {
+		Token myTokenObj(Token::Type::DIGIT, myString[pos]);
+		return myTokenObj;
+	}
+
 }
 
 vector<Token> tokenList(string myString) {
