@@ -86,11 +86,11 @@ string enumToString(Token::Type myType) {
 	return "NOTHING";
 }
 
-int main() {
+/*int main() {
 	vector<Token> tkList;
 	string code = "int a = 0; ?? hey 1234 boom \n \n \n \n";
 	tkList = tokenList(code);
 	for (int i = 0; i < tkList.size(); i++){
 		std::cout << enumToString(tkList[i].getType()) << " : " << tkList[i].getValue() << "\n";
 	}
-}
+}*/
