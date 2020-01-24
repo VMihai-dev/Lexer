@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include <sstream>      
 using namespace std;
@@ -22,4 +22,4 @@ int main() {
     cout << "Ass";
     cout << myString;
     return 0;
-}
+}*/
