@@ -20,6 +20,9 @@ public:
 		OPERATOR,
 		COMMENT,
 		UNKNOW,
+		NEWLINE,
+		OPENBRACE,
+		CLOSEBRACE,
 	};
 	Token(Type type, char value) : myType{ type }, myValue{ value } {}
 	Token(Type type, string stringValue) : myType{ type }, stringValue{ stringValue } {}
